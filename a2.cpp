@@ -54,8 +54,9 @@ int main(int argc, char **argv)
 	    for(int j=0; j<5; j++)
 	      for(int k=0; k<5; k++)
 		if(j==2 || k==2)
-		  for(int p=0; p<3; p++)
-		    input_image(descriptors[i].col+k, descriptors[i].row+j, 0, p)=0;
+		   for(int p=0; p<3; p++)
+                    if(descriptors[i].col+k < input_image.width() && descriptors[i].row+j < input_image.height())
+                      input_image(descriptors[i].<wbr style="font-family: arial, sans-serif; font-size: 13px;" />col+k, descriptors[i].row+j, 0, p)=0;
 
 	  }
 
