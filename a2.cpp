@@ -1,4 +1,4 @@
-// B657 assignment 2 skeleton code
+//// B657 assignment 2 skeleton code
 //
 // Compile with: "make"
 //
