@@ -1,0 +1,30 @@
+g++ a2.cpp -o a2 -lX11 -lpthread -I. -Isiftpp -O3 siftpp/sift.cpp
+In file included from a2.cpp:9:0:
+CImg.h:208:22: fatal error: X11/Xlib.h: No such file or directory
+ #include <X11/Xlib.h>
+                      ^
+compilation terminated.
+In file included from /usr/lib/gcc/x86_64-pc-cygwin/4.9.3/include/c++/cctype:42:0,
+                 from /usr/lib/gcc/x86_64-pc-cygwin/4.9.3/include/c++/bits/localefwd.h:42,
+                 from /usr/lib/gcc/x86_64-pc-cygwin/4.9.3/include/c++/ios:41,
+                 from /usr/lib/gcc/x86_64-pc-cygwin/4.9.3/include/c++/ostream:38,
+                 from siftpp/sift.hpp:48,
+                 from siftpp/sift.cpp:48:
+siftpp/sift.hpp:208:20: error: expected ',' or '...' before numeric constant
+        int _O, int _S,
+                    ^
+siftpp/sift.cpp:383:18: error: expected ',' or '...' before numeric constant
+      int _O, int _S,
+                  ^
+siftpp/sift.cpp: In constructor 'VL::Sift::Sift(const pixel_t*, int, int, VL::float_t, VL::float_t, int, int)':
+siftpp/sift.cpp:389:11: error: '_omin' was not declared in this scope
+     omin( _omin ),
+           ^
+siftpp/sift.cpp:390:11: error: '_smin' was not declared in this scope
+     smin( _smin ),
+           ^
+siftpp/sift.cpp:391:11: error: '_smax' was not declared in this scope
+     smax( _smax ),
+           ^
+Makefile:2: recipe for target 'all' failed
+make: *** [all] Error 1
