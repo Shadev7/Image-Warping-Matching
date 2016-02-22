@@ -185,14 +185,51 @@ void findGaussian()
    // std::normal_distribution<> d(5,2);
     std::vector<float> values;
     
-    for(int n=0; n<10; ++n) {
+    for(int n=0; n<128; n++) {
         values.push_back((double)rand() / (RAND_MAX + 1.0));
     }
     for(int i=values.size()-1;i>=0;i--)
         cout<<values[i]<<endl;
-
+    
 }
 
+//warping function
+// define the inverse warping function 
+CImg<double> inverse_warp ( CImg<double> &input)
+{ 
+int w=input._width ;
+int	l=input._height ;
+CImg<double> output(input,0);
+
+int i,j,k,m ;
+double h[3][3];
+h[1][1] = 1.12 ;
+h[1][2] = -0.31 ;
+h[1][3] = 223 ;
+h[2][1] = 0.11 ;
+h[2][2] = 0.69 ;
+h[2][3] = -19.92 ;
+h[3][1] = 0.00026 ;
+h[3][2] = -0.000597 ;
+h[3][3] = 1 ;
+
+	for(int i=0 ; i<l ; i++)
+		{ for(int j=0 ; j<w ; j++ )
+		{  
+			k= round(h[1][1]*j+h[1][2]*i+h[1][3] );
+		 	m= round (h[2][1]*j+h[2][2]*i+h[2][3] );
+		 	if ( (0<k && k<=l) || (0<m && m<=w) )
+		  		{
+				output(i,j)=input(k,m) ; }
+			else 
+				{ output(i,j) = 255 ; 
+				}
+		  
+		}
+		}
+return output ; 
+
+}
 
 int main(int argc, char **argv)
 {
@@ -259,7 +296,11 @@ int main(int argc, char **argv)
         }}
     else if(part == "part2")
       {
-	// do something here!
+	 //call the inverse warping function
+         CImg<double> input_image(inputFile1.c_str());
+         CImg<double> lincoln_warped= inverse_warp(input_image) ;
+      			   lincoln_warped.save("lincoln_warped.png") ; 	
+        
       }
     else
       throw std::string("unknown part!");
