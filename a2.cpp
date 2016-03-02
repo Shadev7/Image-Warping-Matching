@@ -750,8 +750,6 @@ int main(int argc, char **argv) {
 				warpedImage.save(savename.c_str());
             }
 
-
-
         } else
             throw std::string("unknown part!");
 
